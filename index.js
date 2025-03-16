@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.get("/", (res) => {
+app.get("/", (req, res) => {
     res.send("server is running");
 });
 
+app.get(express.static('public'));
 
 const colazione = [
     {
@@ -44,6 +45,15 @@ const colazione = [
         tags: ['dolce', 'cioccolato']
     }
 ]
+
+app.get("/bacheca", (req, res) => {
+    res.send(colazione);
+});
+
+app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+
+});
 
 
 
